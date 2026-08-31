@@ -1,0 +1,22 @@
+# Logs & Temp
+*.log
+vite.out.log
+vite.err.log
+body.json
+restore.js
+scratch/
+.refact/
+
+# Dependencies & Build
+node_modules
+dist
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop-preview.png

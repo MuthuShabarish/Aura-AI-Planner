@@ -1,0 +1,597 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  
+  /* Fonts */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: var(--font-body);
+
+  /* Light Theme Palette (Clean Slate & Human Colors) */
+  --aura-bg: #F4F6F9;
+  --aura-surface: #FFFFFF;
+  --aura-surface-elevated: #FFFFFF;
+  --aura-border: #E2E8F0;
+  --aura-border-subtle: #F1F5F9;
+  --aura-border-active: #6366F1;
+
+  /* Sidebar Palette */
+  --aura-sidebar-bg: #0F172A;
+  --aura-sidebar-border: #1E293B;
+  --aura-sidebar-text: #F8FAFC;
+  --aura-sidebar-muted: #94A3B8;
+  --aura-sidebar-hover: #1E293B;
+
+  /* Brand Accents */
+  --aura-primary: #6366F1;
+  --aura-primary-hover: #4F46E5;
+  --aura-primary-light: #EEF2FF;
+  
+  --aura-secondary: #10B981;
+  --aura-secondary-light: #ECFDF5;
+  
+  --aura-accent: #F59E0B;
+  --aura-accent-light: #FFFBEB;
+  
+  --aura-info: #0284C7;
+  --aura-info-light: #F0F9FF;
+  
+  --aura-pink: #E11D48;
+  --aura-pink-light: #FFF1F2;
+
+  --aura-purple: #8B5CF6;
+  --aura-purple-light: #F5F3FF;
+
+  /* Typography */
+  --aura-text-primary: #0F172A;
+  --aura-text-secondary: #475569;
+  --aura-text-muted: #64748B;
+
+  /* Shadows */
+  --aura-shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --aura-shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --aura-shadow-hover: 0 10px 20px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+  --aura-shadow-glow: 0 4px 14px rgba(99, 102, 241, 0.2);
+
+  /* Radii */
+  --aura-radius-card: 16px;
+  --aura-radius-btn: 10px;
+  --aura-radius-input: 12px;
+  --aura-radius-pill: 9999px;
+}
+
+/* Dynamic Accent Helper Utilities */
+.bg-primary {
+  background-color: var(--aura-primary) !important;
+}
+.hover\:bg-primary-hover:hover {
+  background-color: var(--aura-primary-hover) !important;
+}
+.text-primary {
+  color: var(--aura-primary) !important;
+}
+.border-primary {
+  border-color: var(--aura-primary) !important;
+}
+.bg-primary-light {
+  background-color: var(--aura-primary-light) !important;
+}
+.shadow-primary {
+  box-shadow: var(--aura-shadow-glow) !important;
+}
+
+/* Dark Mode Palette (Custom #1f1f1f Background & #18191c Container Color) */
+body.dark,
+body.dark-theme,
+.dark {
+  color-scheme: dark;
+  --aura-bg: #1f1f1f;
+  --aura-surface: #18191c;
+  --aura-surface-elevated: #222328;
+  --aura-border: #2c2e36;
+  --aura-border-subtle: #22232a;
+  --aura-border-active: var(--aura-primary);
+
+  --aura-sidebar-bg: #141517;
+  --aura-sidebar-border: #24252c;
+  --aura-sidebar-text: #F8FAFC;
+  --aura-sidebar-muted: #94A3B8;
+  --aura-sidebar-hover: #222328;
+  
+  --aura-secondary: #34D399;
+  --aura-secondary-light: rgba(16, 185, 129, 0.18);
+  
+  --aura-accent: #FBBF24;
+  --aura-accent-light: rgba(245, 158, 11, 0.18);
+  
+  --aura-info: #38BDF8;
+  --aura-info-light: rgba(2, 132, 199, 0.18);
+  
+  --aura-pink: #FB7185;
+  --aura-pink-light: rgba(225, 29, 72, 0.18);
+
+  --aura-purple: #A78BFA;
+  --aura-purple-light: rgba(139, 92, 246, 0.18);
+
+  --aura-text-primary: #F8FAFC;
+  --aura-text-secondary: #CBD5E1;
+  --aura-text-muted: #94A3B8;
+
+  --aura-shadow-card: 0 4px 14px 0 rgba(0, 0, 0, 0.45);
+  --aura-shadow-hover: 0 8px 24px 0 rgba(0, 0, 0, 0.65);
+  --aura-shadow-glow: 0 4px 16px rgba(129, 140, 248, 0.25);
+}
+
+/* Enforce #1f1f1f background for main app workspace in dark mode */
+.dark body,
+.dark .aura-app-shell,
+.dark .aura-main-workspace {
+  background-color: #1f1f1f !important;
+}
+
+.dark .aura-sidebar-container {
+  background-color: #141517 !important;
+  border-color: #24252c !important;
+}
+
+/* Enforce default card background in dark mode without destroying colored utility classes */
+.dark .aura-card {
+  background-color: #18191c;
+}
+
+.dark .border-slate-800,
+.dark .dark\:border-slate-800 {
+  border-color: #2c2e36;
+}
+
+/* Light Mode Background & Container Contrast */
+body.light-theme,
+body.light-theme .aura-app-shell,
+body.light-theme .aura-main-workspace {
+  background-color: #F4F6F9 !important;
+}
+
+body.light-theme .aura-card,
+body.light-theme .bg-white {
+  background-color: #FFFFFF !important;
+}
+
+/* Reset & Baseline */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--aura-bg);
+  color: var(--aura-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--aura-primary);
+  outline-offset: 2px;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Application Layout Shell */
+.aura-app-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--aura-bg);
+}
+
+.aura-main-workspace {
+  flex: 1;
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--aura-bg);
+  transition: margin-left 0.25s ease;
+}
+
+@media (max-width: 1024px) {
+  .aura-main-workspace {
+    margin-left: 0;
+  }
+}
+
+.aura-page-container {
+  padding: 28px 36px;
+  flex: 1;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .aura-page-container {
+    padding: 16px;
+  }
+}
+
+/* Sidebar Styles */
+.aura-sidebar-container {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  background-color: var(--aura-sidebar-bg);
+  border-right: 1px solid var(--aura-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--aura-sidebar-text);
+  user-select: none;
+}
+
+.aura-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  border-radius: var(--aura-radius-btn);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--aura-sidebar-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.aura-nav-btn:hover {
+  background-color: var(--aura-sidebar-hover);
+  color: #FFFFFF;
+}
+
+.aura-nav-btn.active {
+  background-color: var(--aura-primary);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: var(--aura-shadow-glow);
+}
+
+/* Top Navigation Bar */
+.aura-topbar {
+  height: 72px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: transparent;
+  border-bottom: 1px solid var(--aura-border);
+}
+
+@media (max-width: 640px) {
+  .aura-topbar {
+    padding: 0 16px;
+  }
+}
+
+/* Cards */
+.aura-card {
+  background-color: var(--aura-surface);
+  border: 1px solid var(--aura-border);
+  border-radius: var(--aura-radius-card);
+  box-shadow: var(--aura-shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.aura-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--aura-shadow-hover);
+  border-color: var(--aura-border-active);
+}
+
+/* Buttons */
+.aura-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--aura-radius-btn);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.aura-btn-primary {
+  background-color: var(--aura-primary);
+  color: #FFFFFF;
+  box-shadow: var(--aura-shadow-glow);
+}
+
+.aura-btn-primary:hover {
+  background-color: var(--aura-primary-hover);
+  transform: translateY(-1px);
+}
+
+.aura-btn-secondary {
+  background-color: var(--aura-surface);
+  color: var(--aura-text-primary);
+  border: 1px solid var(--aura-border);
+}
+
+.aura-btn-secondary:hover {
+  background-color: var(--aura-border-subtle);
+  border-color: var(--aura-text-muted);
+}
+
+.aura-btn-ghost {
+  background-color: transparent;
+  color: var(--aura-text-secondary);
+}
+
+.aura-btn-ghost:hover {
+  background-color: var(--aura-border-subtle);
+  color: var(--aura-text-primary);
+}
+
+.aura-btn-danger {
+  background-color: #EF4444;
+  color: #FFFFFF;
+}
+
+.aura-btn-danger:hover {
+  background-color: #DC2626;
+}
+
+.aura-btn-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: var(--aura-surface);
+  border: 1px solid var(--aura-border);
+  color: var(--aura-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.aura-btn-icon:hover {
+  background-color: var(--aura-border-subtle);
+  color: var(--aura-text-primary);
+}
+
+.aura-btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+.aura-btn-lg {
+  padding: 12px 24px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+/* Badges */
+.aura-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--aura-radius-pill);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.aura-badge-purple {
+  background-color: var(--aura-primary-light);
+  color: var(--aura-primary);
+}
+
+.aura-badge-green {
+  background-color: var(--aura-secondary-light);
+  color: var(--aura-secondary);
+}
+
+.aura-badge-orange {
+  background-color: var(--aura-accent-light);
+  color: var(--aura-accent);
+}
+
+.aura-badge-blue {
+  background-color: var(--aura-info-light);
+  color: var(--aura-info);
+}
+
+.aura-badge-pink {
+  background-color: var(--aura-pink-light);
+  color: var(--aura-pink);
+}
+
+.aura-badge-gray {
+  background-color: var(--aura-border-subtle);
+  color: var(--aura-text-secondary);
+}
+
+/* Inputs */
+.aura-input {
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: var(--aura-radius-input);
+  background-color: var(--aura-surface);
+  border: 1px solid var(--aura-border);
+  color: var(--aura-text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aura-input:focus {
+  outline: none;
+  border-color: var(--aura-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.aura-input.pl-9 {
+  padding-left: 2.25rem !important;
+}
+.aura-input.pl-10 {
+  padding-left: 2.5rem !important;
+}
+.aura-input.pl-11 {
+  padding-left: 2.75rem !important;
+}
+
+/* Habit Dot */
+.aura-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.aura-dot-active {
+  background-color: var(--aura-secondary);
+}
+
+.aura-dot-inactive {
+  background-color: transparent;
+  border: 1.5px solid var(--aura-border);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   COMPACT DENSITY MODE OVERRIDES (Dynamic UI re-scaling)
+   ========================================================================== */
+body.compact-density {
+  font-size: 13px;
+}
+
+body.compact-density .aura-page-container {
+  padding: 14px 20px !important;
+}
+
+body.compact-density .aura-topbar {
+  height: 54px !important;
+  padding: 0 20px !important;
+}
+
+body.compact-density .aura-sidebar-container {
+  width: 220px !important;
+}
+
+body.compact-density .aura-main-workspace {
+  margin-left: 220px !important;
+}
+
+body.compact-density .aura-nav-btn {
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  gap: 8px !important;
+}
+
+body.compact-density .aura-btn {
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+}
+
+body.compact-density .aura-input {
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+}
+
+body.compact-density .p-6 {
+  padding: 1rem !important;
+}
+
+body.compact-density .p-5 {
+  padding: 0.875rem !important;
+}
+
+body.compact-density .p-4 {
+  padding: 0.75rem !important;
+}
+
+body.compact-density .p-3\.5 {
+  padding: 0.625rem !important;
+}
+
+body.compact-density .gap-6 {
+  gap: 0.875rem !important;
+}
+
+body.compact-density .gap-5 {
+  gap: 0.75rem !important;
+}
+
+body.compact-density .gap-4 {
+  gap: 0.625rem !important;
+}
+
+body.compact-density .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.875rem * calc(1 - var(--tw-space-y-reverse))) !important;
+  margin-bottom: calc(0.875rem * var(--tw-space-y-reverse)) !important;
+}
+
+body.compact-density .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.625rem * calc(1 - var(--tw-space-y-reverse))) !important;
+  margin-bottom: calc(0.625rem * var(--tw-space-y-reverse)) !important;
+}
+
+body.compact-density .h-\[calc\(100vh-128px\)\] {
+  height: calc(100vh - 90px) !important;
+}
+
+body.compact-density .h-\[calc\(100vh-120px\)\] {
+  height: calc(100vh - 90px) !important;
+}
+
